@@ -1,6 +1,8 @@
 ﻿using System;
 using Raylib_cs;
 using System.Numerics;
+using System.Collections;
+
 
 Raylib.InitWindow(800, 800, "SURVIVE");
 Raylib.SetTargetFPS(60);
@@ -11,20 +13,28 @@ int food = 10;
 
 float speed = 2f;
 
-Vector2 textPos = new Vector2(800, 300);
+Vector2 textPos = new Vector2(375, 450);
 
 Texture2D playerImage = Raylib.LoadTexture("pixelGuy_Survival2D.png");
 Texture2D enemyImage = Raylib.LoadTexture("monster_Survival2D.png");
 Texture2D backgroundImage = Raylib.LoadTexture("camp_Survival2D.png");
 Texture2D backgroundImage2 = Raylib.LoadTexture("lake_Survival2D.png");
 
+ArrayList wallList = new ArrayList();
+
+ArrayList enemyList = new ArrayList();
+Rectangle enemyRect = new Rectangle(0,0, enemyImage.width, enemyImage.height);
+
+
+
+
 Rectangle playerRect = new Rectangle(600, 400, playerImage.width, playerImage.height);
 Rectangle campRect = new Rectangle(0, 0, backgroundImage.width, backgroundImage.height);
 Rectangle lakeRect = new Rectangle(0, 0, backgroundImage2.width, backgroundImage2.height);
-Rectangle campFireRect = new Rectangle(400, 400, 200, 100);
+Rectangle campFireRect = new Rectangle(400, 450, 200, 100);
 Rectangle waterRect = new Rectangle(200, 300, 200, 100);
 
-Rectangle enemyRect = new Rectangle(0,0, enemyImage.width, enemyImage.height);
+Font tale = Raylib.LoadFont("Milonga-Regular.ttf");
 
 string room = "camp";
 
@@ -50,7 +60,7 @@ while(!Raylib.WindowShouldClose())
 
         if(Raylib.CheckCollisionRecs(playerRect, campFireRect))
         {
-            
+            if(Raylib.IsKeyPressed(KeyboardKey.KEY_E)) food ++;
         }
     }
     else if(room == "lake")
@@ -86,6 +96,11 @@ while(!Raylib.WindowShouldClose())
     if(room == "camp")
     {
         Raylib.DrawTexture(backgroundImage, (int)campRect.x, (int)campRect.y, Color.WHITE);
+
+          if(Raylib.CheckCollisionRecs(playerRect, campFireRect))
+        {
+            Raylib.DrawTextEx(tale, "Press E to eat", textPos, 20, 10, Color.WHITE);
+        }
     }
     else if(room =="lake")
     {

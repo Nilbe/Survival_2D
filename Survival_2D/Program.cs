@@ -11,7 +11,7 @@ int HP = 100;
 int water = 10;
 int food = 10;
 
-float speed = 2f;
+float speed = 1.5f;
 
 Vector2 textPos = new Vector2(375, 450);
 Vector2 textPos2 = new Vector2(50,600);
@@ -32,21 +32,20 @@ Rectangle enemyRect = new Rectangle(0,0, enemyImage.width, enemyImage.height);
 
 
 
-
 Rectangle playerRect = new Rectangle(600, 400, playerImage.width, playerImage.height);
 Rectangle campRect = new Rectangle(0, 0, backgroundImage.width, backgroundImage.height);
 Rectangle lakeRect = new Rectangle(0, 0, backgroundImage2.width, backgroundImage2.height);
 Rectangle campFireRect = new Rectangle(400, 450, 200, 100);
 Rectangle waterRect = new Rectangle(100, 700, 200, 100);
-Rectangle heartRect = new Rectangle(10, 25, heartImage.width, heartImage.height);
-Rectangle waterDropRect = new Rectangle(50, 25, waterDropImage.width, waterDropImage.height);
-Rectangle burgerRect = new Rectangle(100, 25, burgerImage.width, burgerImage.height);
-
+Rectangle heartRect = new Rectangle(10, 10, heartImage.width, heartImage.height);
+Rectangle waterDropRect = new Rectangle(90, 10, waterDropImage.width, waterDropImage.height);
+Rectangle burgerRect = new Rectangle(170, 10, burgerImage.width, burgerImage.height);
 
 Font tale = Raylib.LoadFont("Milonga-Regular.ttf");
 
-string room = "camp";
 
+
+string room = "camp";
 
 while(!Raylib.WindowShouldClose())
 {
@@ -104,6 +103,7 @@ while(!Raylib.WindowShouldClose())
             playerRect.y += movement.Y;
     }
 
+
     //påbörjar ritandet av spelet
     Raylib.BeginDrawing();
 
@@ -129,13 +129,13 @@ while(!Raylib.WindowShouldClose())
     {
         Raylib.DrawTexture(playerImage, (int)playerRect.x, (int)playerRect.y, Color.WHITE); 
 
-        Raylib.DrawText(HP.ToString(), 50, 10, 25, Color.WHITE);
-        Raylib.DrawText(water.ToString(), 150, 10, 25, Color.WHITE);
-        Raylib.DrawText(food.ToString(), 225, 10, 25, Color.WHITE);
-
         Raylib.DrawTexture(heartImage, (int)heartRect.x, (int)heartRect.y, Color.WHITE);
         Raylib.DrawTexture(waterDropImage, (int)waterDropRect.x, (int)waterDropRect.y, Color.WHITE);
         Raylib.DrawTexture(burgerImage, (int)burgerRect.x, (int)burgerRect.y, Color.WHITE);
+
+        Raylib.DrawText(HP.ToString(), 50, 20, 25, Color.WHITE);
+        Raylib.DrawText(water.ToString(), 130, 20, 25, Color.WHITE);
+        Raylib.DrawText(food.ToString(), 235, 20, 25, Color.WHITE);
     }
     Raylib.EndDrawing();
 
